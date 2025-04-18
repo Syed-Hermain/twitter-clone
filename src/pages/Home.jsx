@@ -1,4 +1,5 @@
 import React from "react";
+import CreatePost from "../components/CreatePost"; // Import CreatePost component
 
 const tweets = [
     {
@@ -23,20 +24,26 @@ const tweets = [
 
 const Home = () => {
     return (
-        <div className="bg-gray-100 min-h-screen p-4">
-            <div className="max-w-2xl mx-auto bg-white shadow-md rounded-lg">
+        <div className="bg-gray-100 min-h-screen p-4 flex">
+            {/* Left Sidebar for CreatePost (Desktop) */}
+            <div className="hidden md:block w-1/4 p-4">
+                <CreatePost />
+            </div>
+
+            {/* Main Feed */}
+            <div className="max-w-2xl mx-auto bg-white shadow-md rounded-lg flex-1">
                 <h1 className="text-2xl font-bold text-center py-4 border-b">Home</h1>
+
+                {/* Mobile Create Post Button */}
+                <div className="md:hidden p-4">
+                    <CreatePost />
+                </div>
+
+                {/* Tweets */}
                 <div className="p-4 space-y-4">
                     {tweets.map((tweet) => (
-                        <div
-                            key={tweet.id}
-                            className="flex items-start space-x-4 bg-gray-50 p-4 rounded-lg shadow-sm"
-                        >
-                            <img
-                                src={tweet.avatar}
-                                alt={`${tweet.username}'s avatar`}
-                                className="w-12 h-12 rounded-full"
-                            />
+                        <div key={tweet.id} className="flex items-start space-x-4 bg-gray-50 p-4 rounded-lg shadow-sm">
+                            <img src={tweet.avatar} alt={`${tweet.username}'s avatar`} className="w-12 h-12 rounded-full" />
                             <div>
                                 <h2 className="font-semibold text-lg">{tweet.username}</h2>
                                 <p className="text-gray-700">{tweet.content}</p>
