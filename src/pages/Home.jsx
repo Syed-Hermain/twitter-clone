@@ -33,12 +33,9 @@ const Home = () => {
             {/* Main Feed */}
             <div className="max-w-2xl mx-auto bg-white shadow-md rounded-lg flex-1">
                 <h1 className="text-2xl font-bold text-center py-4 border-b">Home</h1>
-
-                {/* Mobile Create Post Button */}
-                <div className="md:hidden p-4">
-                    <CreatePost />
-                </div>
-
+                
+                {/* It was here before, the create post */}
+                
                 {/* Tweets */}
                 <div className="p-4 space-y-4">
                     {tweets.map((tweet) => (
@@ -52,6 +49,12 @@ const Home = () => {
                     ))}
                 </div>
             </div>
+
+            {/* Mobile Create Post Button */}
+            <div className="md:hidden p-4">
+                    <CreatePost />
+                </div>
+
         </div>
     );
 };
