@@ -1,12 +1,12 @@
 import React from 'react';
-import Home from './components/Home';
+import Home from './pages/Home';
 
 import { Routes, Route } from 'react-router';
-import Navbar from './components/Navbar';
-import Explore from './components/Explore';
-import Auth from './components/Auth';
-import Profile from './components/Profile';
-import Notifications from './components/Notifications';
+import Navbar from './pages/Navbar';
+import Explore from './pages/Explore';
+import Auth from './pages/Auth';
+import Profile from './pages/Profile';
+import Notifications from './pages/Notifications';
 
 const App = () => {
   return (
