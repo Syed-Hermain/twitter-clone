@@ -8,6 +8,8 @@ import Auth from './pages/Auth';
 import Profile from './pages/Profile';
 import Notifications from './pages/Notifications';
 
+
+import CreatePost from './components/CreatePost';
 const App = () => {
   return (
     <div>
@@ -19,6 +21,7 @@ const App = () => {
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/explore'element={<Explore/>}/>
           <Route path='/notifications' element={<Notifications/>}></Route>
+          <Route path='/create-post' element={<CreatePost/>}/>
         </Routes>
       </div>
     </div>
