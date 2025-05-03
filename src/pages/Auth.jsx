@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+ // Import the Supabase client
+import supabase from "../utils/supabaseClient";
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [formData, setFormData] = useState({
@@ -7,17 +8,60 @@ const Auth = () => {
     password: "",
     confirmPassword: "",
   });
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null);
+    setSuccess(null);
+
     if (isSignUp) {
-      console.log("Sign Up Data:", formData);
+      // Ensure passwords match during sign-up
+      if (formData.password !== formData.confirmPassword) {
+        setError("Passwords do not match.");
+        return;
+      }
+
+      try {
+        // Sign up user with Supabase
+        const { data, error } = await supabase.auth.signUp({
+          email: formData.email,
+          password: formData.password,
+        });
+
+        if (error) {
+          setError(error.message);
+          return;
+        }
+
+        setSuccess("Sign-up successful! Please check your email to verify your account.");
+        console.log("Sign Up Data:", data);
+      } catch (err) {
+        setError("An error occurred during sign-up.");
+      }
     } else {
-      console.log("Sign In Data:", formData);
+      try {
+        // Sign in user with Supabase
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email: formData.email,
+          password: formData.password,
+        });
+
+        if (error) {
+          setError(error.message);
+          return;
+        }
+
+        setSuccess("Sign-in successful! Welcome back.");
+        console.log("Sign In Data:", data);
+      } catch (err) {
+        setError("An error occurred during sign-in.");
+      }
     }
   };
 
@@ -29,9 +73,7 @@ const Auth = () => {
         </h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
+            <label className="block text-sm font-medium text-gray-700">Email</label>
             <input
               type="email"
               name="email"
@@ -42,9 +84,7 @@ const Auth = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
-              Password
-            </label>
+            <label className="block text-sm font-medium text-gray-700">Password</label>
             <input
               type="password"
               name="password"
@@ -56,9 +96,7 @@ const Auth = () => {
           </div>
           {isSignUp && (
             <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700">
-                Confirm Password
-              </label>
+              <label className="block text-sm font-medium text-gray-700">Confirm Password</label>
               <input
                 type="password"
                 name="confirmPassword"
@@ -76,6 +114,8 @@ const Auth = () => {
             {isSignUp ? "Sign Up" : "Sign In"}
           </button>
         </form>
+        {error && <p className="mt-4 text-sm text-center text-red-500">{error}</p>}
+        {success && <p className="mt-4 text-sm text-center text-green-500">{success}</p>}
         <p className="mt-4 text-sm text-center text-gray-600">
           {isSignUp ? "Already have an account?" : "Don't have an account?"}{" "}
           <button
