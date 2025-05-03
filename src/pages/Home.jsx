@@ -20,6 +20,42 @@ const tweets = [
         content: "TailwindCSS makes styling so much easier! 🎨 #webdev",
         avatar: "https://via.placeholder.com/50",
     },
+    {
+        id: 4,
+        username: "john_doe",
+        content: "Just had the best coffee ever! ☕ #morningvibes",
+        avatar: "https://via.placeholder.com/50",
+    },
+    {
+        id: 5,
+        username: "jane_smith",
+        content: "Loving the new React features! 🚀 #codinglife",
+        avatar: "https://via.placeholder.com/50",
+    },
+    {
+        id: 6,
+        username: "tech_guru",
+        content: "TailwindCSS makes styling so much easier! 🎨 #webdev",
+        avatar: "https://via.placeholder.com/50",
+    },
+    {
+        id: 7,
+        username: "john_doe",
+        content: "Just had the best coffee ever! ☕ #morningvibes",
+        avatar: "https://via.placeholder.com/50",
+    },
+    {
+        id: 8,
+        username: "jane_smith",
+        content: "Loving the new React features! 🚀 #codinglife",
+        avatar: "https://via.placeholder.com/50",
+    },
+    {
+        id: 9,
+        username: "tech_guru",
+        content: "TailwindCSS makes styling so much easier! 🎨 #webdev",
+        avatar: "https://via.placeholder.com/50",
+    }
 ];
 
 const Home = () => {
@@ -31,7 +67,7 @@ const Home = () => {
             </div>
 
             {/* Main Feed */}
-            <div className="max-w-2xl mx-auto bg-white shadow-md rounded-lg flex-1">
+            <div className="max-w-2xl mx-auto bg-white shadow-md rounded-lg flex-1 mt-10 ml-10">
                 <h1 className="text-2xl font-bold text-center py-4 border-b">Home</h1>
                 
                 {/* It was here before, the create post */}

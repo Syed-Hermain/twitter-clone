@@ -15,7 +15,7 @@ const Explore = () => {
     ];
 
     return (
-        <div className="bg-gray-100 min-h-screen flex flex-col md:flex-row">
+        <div className="bg-gray-100 min-h-screen flex flex-col md:flex-row mt-15">
             
             {/* Left Sidebar for CreatePost (Desktop) */}
             <div className="hidden md:block w-1/4 p-4">
